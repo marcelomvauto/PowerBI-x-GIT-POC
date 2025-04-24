@@ -7,6 +7,11 @@ table 'Tabela Teste'
 	measure 'Nova Medida 2' = "Medida teste criada para exemplificar o método de trabalho centralizado na main branch"
 		lineageTag: 886d3682-a62e-49d3-a7f5-73254e1f68d2
 
+	measure 'Nova Medida 3' =
+			
+			"Medida teste criada para o chamado #00001 do Jira"
+		lineageTag: c6e6b395-ea88-4ae5-bc72-a3379419e31f
+
 	column ID
 		dataType: string
 		lineageTag: 3c9fef91-2fe4-4e7f-ae7b-98594cd2b5d8
@@ -24,17 +29,19 @@ table 'Tabela Teste'
 		annotation SummarizationSetBy = Automatic
 
 	column Valor
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 15f4d00a-9175-4a4a-9686-7bf3f0e5fea6
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Valor
 
 		annotation SummarizationSetBy = Automatic
 
 	column Quantidade
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 59c27204-5860-4a29-b6d9-1227aaababbd
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Quantidade
 
 		annotation SummarizationSetBy = Automatic
@@ -43,9 +50,10 @@ table 'Tabela Teste'
 		mode: import
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUXIsKsqvAtKGBkDCVClWJ1rJCMhyS83MOrw4HywGEzcGKc9JS0xOBTKMIHpA4iZApm/i4eWHF4PETBESIKZvak5iXnJmIswKQ4hZZkCmc2JRHsgoE5h4LAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ID = _t, Item = _t, Valor = _t, Quantidade = _t])
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUXIsKsqvAtKGBkDCVClWJ1rJCMhyS83MOrw4HywGEzcGKc9JS0xOBTKMIHpA4iZApm/i4eWHF4PETBESIKZvak5iXnJmIswKQ4hZZkCmc2JRHsgoE5h4LAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ID = _t, Item = _t, Valor = _t, Quantidade = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Valor", Int64.Type}, {"Quantidade", Int64.Type}})
 				in
-				    Source
+				    #"Changed Type"
 
 	annotation PBI_NavigationStepName = Navigation
 
