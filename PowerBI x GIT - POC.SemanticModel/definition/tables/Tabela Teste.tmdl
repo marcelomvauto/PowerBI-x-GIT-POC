@@ -4,6 +4,9 @@ table 'Tabela Teste'
 	measure 'Nova Medida 1' = "Medida teste criada para dar o primeiro commit na Main após a criação do repositório"
 		lineageTag: 668d4ad4-4bb6-4d4c-bab0-342cbe08ee72
 
+	measure 'Nova Medida 2' = "Medida teste criada para exemplificar o método de trabalho centralizado na main branch"
+		lineageTag: 886d3682-a62e-49d3-a7f5-73254e1f68d2
+
 	column ID
 		dataType: string
 		lineageTag: 3c9fef91-2fe4-4e7f-ae7b-98594cd2b5d8
