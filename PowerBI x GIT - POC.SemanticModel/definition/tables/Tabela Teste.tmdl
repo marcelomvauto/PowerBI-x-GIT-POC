@@ -1,0 +1,47 @@
+table 'Tabela Teste'
+	lineageTag: f9a32d18-2dfb-42a5-b4c7-88431b3f807d
+
+	column ID
+		dataType: string
+		lineageTag: 3c9fef91-2fe4-4e7f-ae7b-98594cd2b5d8
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 0a136bd4-3280-4b27-b4ba-3b277828015c
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: string
+		lineageTag: 15f4d00a-9175-4a4a-9686-7bf3f0e5fea6
+		summarizeBy: none
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: string
+		lineageTag: 59c27204-5860-4a29-b6d9-1227aaababbd
+		summarizeBy: none
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Tabela Teste' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUXIsKsqvAtKGBkDCVClWJ1rJCMhyS83MOrw4HywGEzcGKc9JS0xOBTKMIHpA4iZApm/i4eWHF4PETBESIKZvak5iXnJmIswKQ4hZZkCmc2JRHsgoE5h4LAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ID = _t, Item = _t, Valor = _t, Quantidade = _t])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
